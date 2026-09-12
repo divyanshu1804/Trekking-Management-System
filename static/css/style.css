@@ -1,0 +1,410 @@
+/* GENERAL */
+
+html,
+body{
+    height:100%;
+}
+
+body{
+    background:#ffffff;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+    color:#333;
+    overflow-x:hidden;
+}
+
+section{
+    padding:90px 0;
+}
+
+img{
+    max-width:100%;
+}
+
+
+/* NAVBAR */
+.custom-navbar{
+    background:rgba(18,18,18,.35);
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+    transition:.4s;
+    padding:12px 0;
+}
+
+.custom-navbar .navbar-brand{
+    font-size:1.8rem;
+    font-weight:700;
+    color:#fff !important;
+}
+
+.custom-navbar .nav-link{
+    color:#fff !important;
+    font-weight:500;
+    margin-left:15px;
+    transition:.3s;
+}
+
+.custom-navbar .nav-link:hover{
+    color:#4da3ff !important;
+}
+
+.navbar-text{
+    color:#fff !important;
+}
+
+
+/* HERO */
+.hero-section{
+    position:relative;
+    height:100vh;
+    background:
+    linear-gradient(
+        rgba(0,0,0,.45),
+        rgba(0,0,0,.45)
+    ),
+    url("../images/hero.jpg");
+
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:center;
+}
+
+.hero-overlay{
+    position:absolute;
+    inset:0;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.hero-tag{
+    display:inline-block;
+    padding:10px 18px;
+    border-radius:30px;
+    background:rgba(255,255,255,.15);
+    color:white;
+    backdrop-filter:blur(8px);
+}
+
+.hero-title{
+    font-size:4.5rem;
+    color:white;
+    font-weight:700;
+    line-height:1.1;
+}
+
+.hero-text{
+    color:white;
+    font-size:1.2rem;
+    max-width:550px;
+    line-height:1.8;
+}
+
+
+/* BUTTONS */
+.btn{
+    border-radius:10px;
+    transition:.3s;
+}
+
+.btn-primary{
+    background:#2563eb;
+    border:none;
+}
+
+.btn-primary:hover{
+    background:#1d4ed8;
+    transform:translateY(-3px);
+}
+
+.btn-outline-light:hover{
+    transform:translateY(-3px);
+}
+
+
+/* FLOATING FEATURES */
+.feature-strip{
+    margin-top:-70px;
+    position:relative;
+    z-index:10;
+}
+
+.feature-box{
+    background:white;
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 20px 45px rgba(0,0,0,.12);
+}
+
+.feature-item{
+    padding:15px;
+}
+
+.feature-icon{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+
+/* ABOUT */
+.about-section img{
+    border-radius:20px;
+}
+
+.about-section p{
+    line-height:1.8;
+}
+
+
+/* SECTION TITLES */
+.section-title{
+    font-weight:700;
+}
+
+
+/* CARDS */
+.card{
+    border:none;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    transition:.35s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+.card-img-top{
+    height:240px;
+    object-fit:cover;
+}
+
+
+/* WHY SECTION */
+.why-card{
+    padding:25px;
+    text-align:center;
+}
+
+.why-icon{
+    font-size:50px;
+}
+
+
+/* FEATURED TREKS */
+.featured-section{
+    background:#f8f9fa;
+}
+
+.trek-card .card-body{
+    padding:25px;
+}
+
+
+/* ACTIVITIES */
+.activity-card{
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.activity-card:hover{
+    transform:translateY(-8px);
+}
+
+.activity-icon{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+
+/* STATS */
+.stats-section{
+    background:#668fe7;
+    color:white;
+}
+
+.stats-section h2{
+    font-size:3rem;
+    font-weight:700;
+}
+
+.stats-section p{
+    font-size:1.1rem;
+}
+
+
+/* TESTIMONIALS */
+.testimonial-section{
+    background:white;
+}
+
+
+/* CTA */
+.cta-section{
+    background:
+    linear-gradient(
+        rgba(181, 197, 232, 0.92),
+        rgba(37,99,235,.92)
+    ),
+    url("../images/hero.jpg");
+
+    background-size:cover;
+    background-position:center;
+    color:white;
+    text-align:center;
+    padding:100px 0;
+}
+
+
+/* FOOTER */
+footer{
+    background:#111;
+    color:white;
+    padding:20px;
+}
+
+
+/* RESPONSIVE */
+@media(max-width:992px){
+.hero-title{
+    font-size:3.2rem;
+}
+
+.hero-text{
+    max-width:100%;
+}
+
+.feature-strip{
+    margin-top:30px;
+}
+
+}
+
+@media(max-width:768px){
+.hero-section{
+    height:auto;
+    padding:140px 0 80px;
+}
+
+.hero-title{
+    font-size:2.5rem;
+}
+
+.hero-text{
+    font-size:1rem;
+}
+
+section{
+    padding:60px 0;
+}
+
+.feature-box{
+    padding:25px;
+}
+
+
+}
+
+/* Space for fixed navbar */
+.page-content{
+    padding-top:77px;
+}
+
+
+/* Flash Messages */
+.flash-container{
+    margin-bottom:20px;
+}
+
+
+/* Navbar */
+.custom-navbar{
+    min-height:75px;
+}
+
+
+/* Alerts */
+.alert{
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+
+
+/* ADMIN DASHBOARD */
+.dashboard-card{
+    border:none;
+    border-radius:15px;
+}
+
+.dashboard-card .card-body{
+    padding:30px;
+}
+
+.dashboard-card h1{
+    font-weight:bold;
+}
+
+.dashboard-card:hover{
+    transform:translateY(-5px);
+}
+
+/* DASHBOARD BUTTONS */
+.dashboard-btn{
+    border-radius:12px;
+    padding:12px 25px;
+    font-weight:600;
+}
+
+/* admin-treks-Tables*/
+.table td,
+.table th{
+    vertical-align: middle;
+}
+
+.badge{
+    font-size: 0.85rem;
+}
+.btn-outline-danger:hover{
+    transform:translateY(-2px);
+}
+
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+
+.table {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+
+.trek-card{
+    transition: all 0.3s ease;
+}
+
+.trek-card:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+
+/* STAFF TREK IMAGE */
+.staff-trek-image{
+    height:200px;
+    object-fit:cover;
+    border-top-left-radius:15px;
+    border-top-right-radius:15px;
+}
