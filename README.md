@@ -114,5 +114,4 @@ http://127.0.0.1:5000
 ## 👨‍💻 Author:
 
 **Divyanshu Kumar**
-
 **Course:** CS2004
