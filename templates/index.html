@@ -1,0 +1,778 @@
+{% extends "base.html" %}
+
+{% block title %}
+Trekking Management
+{% endblock %}
+
+{% block content %}
+
+<!-- ================= HERO_SECTION ================= -->
+
+<section class="hero-section">
+
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-6">
+
+                <span class="hero-tag">
+                    🏔️ India's Trusted Trekking Platform
+                </span>
+
+                <h1 class="hero-title mt-3">
+                    Explore Mountains.
+                    <br>
+                    Create Memories.
+                </h1>
+
+                <p class="hero-text mt-4">
+                    Discover breathtaking trekking destinations across India,
+                    manage your bookings effortlessly, and experience adventures
+                    with expert guides and complete safety.
+                </p>
+
+                <div class="mt-4">
+
+                    {% if current_user.is_authenticated %}
+
+                        {% if current_user.role == 'admin' %}
+
+                            <a href="/admin-dashboard"
+                               class="btn btn-primary btn-lg me-3">
+                                Dashboard
+                            </a>
+
+                        {% elif current_user.role == 'staff' %}
+
+                            <a href="/staff-dashboard"
+                               class="btn btn-primary btn-lg me-3">
+                                Dashboard
+                            </a>
+
+                        {% elif current_user.role == 'user' %}
+
+                            <a href="/user-dashboard"
+                               class="btn btn-primary btn-lg me-3">
+                                Explore Treks
+                            </a>
+
+                        {% endif %}
+
+                    {% else %}
+
+                        <a href="/register-user"
+                           class="btn btn-primary btn-lg me-3">
+                            Start Your Journey
+                        </a>
+
+                    {% endif %}
+
+                    <a href="/login"
+                       class="btn btn-outline-light btn-lg">
+                        Login
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= FLOATING FEATURES ================= -->
+
+<section class="feature-strip">
+
+    <div class="container">
+
+        <div class="feature-box">
+
+            <div class="row text-center">
+
+                <div class="col-md-3">
+
+                    <div class="feature-item">
+
+                        <div class="feature-icon">
+                            🥾
+                        </div>
+
+                        <h5>Exciting Treks</h5>
+
+                        <p>
+                            Discover beautiful trekking destinations across India.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <div class="feature-item">
+
+                        <div class="feature-icon">
+                            🛡️
+                        </div>
+
+                        <h5>Safe & Secure</h5>
+
+                        <p>
+                            Every trek follows professional safety standards.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <div class="feature-item">
+
+                        <div class="feature-icon">
+                            👨‍🏫
+                        </div>
+
+                        <h5>Expert Staff</h5>
+
+                        <p>
+                            Experienced trek leaders for every expedition.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <div class="feature-item">
+
+                        <div class="feature-icon">
+                            📅
+                        </div>
+
+                        <h5>Easy Booking</h5>
+
+                        <p>
+                            Book your favourite trek within minutes.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= ABOUT ================= -->
+
+<section class="about-section py-5">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-6 mb-4">
+
+                <img
+                    src="{{ url_for('static', filename='images/about.jpg') }}"
+                    class="img-fluid rounded-4 shadow-lg"
+                    alt="About Trekking">
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <span class="text-primary fw-bold">
+                    ABOUT US
+                </span>
+
+                <h2 class="display-5 fw-bold mt-3">
+
+                    Your Adventure Begins Here
+
+                </h2>
+
+                <p class="lead mt-4">
+
+                    Trekking Management System connects adventure lovers,
+                    trekking staff, and administrators on a single platform.
+
+                </p>
+
+                <p>
+
+                    Browse exciting treks, reserve your seat,
+                    track bookings, and enjoy a hassle-free
+                    trekking experience from registration
+                    to summit.
+
+                </p>
+
+                <div class="row mt-4">
+
+                    <div class="col-6">
+
+                        <h3 class="text-primary fw-bold">
+
+                            500+
+
+                        </h3>
+
+                        <p>
+
+                            Happy Trekkers
+
+                        </p>
+
+                    </div>
+
+                    <div class="col-6">
+
+                        <h3 class="text-primary fw-bold">
+
+                            50+
+
+                        </h3>
+
+                        <p>
+
+                            Successful Treks
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= WHY CHOOSE US ================= -->
+
+<section class="why-section py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="text-primary fw-bold">
+                WHY CHOOSE US
+            </span>
+
+            <h2 class="display-5 fw-bold mt-2">
+                Why Trekkers Love Us
+            </h2>
+
+            <p class="text-muted">
+                Experience safe, exciting and unforgettable trekking adventures.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-lg-4">
+
+                <div class="card why-card h-100 text-center p-4">
+
+                    <div class="why-icon">
+                        🏔️
+                    </div>
+
+                    <h4 class="mt-3">
+                        Expert Guides
+                    </h4>
+
+                    <p>
+                        Our experienced trekking staff ensures every journey
+                        is enjoyable, well planned and completely safe.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="card why-card h-100 text-center p-4">
+
+                    <div class="why-icon">
+                        🛡️
+                    </div>
+
+                    <h4 class="mt-3">
+                        Safety First
+                    </h4>
+
+                    <p>
+                        Safety equipment, emergency planning and professional
+                        guidance on every trek.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="card why-card h-100 text-center p-4">
+
+                    <div class="why-icon">
+                        ⭐
+                    </div>
+
+                    <h4 class="mt-3">
+                        Best Experience
+                    </h4>
+
+                    <p>
+                        Enjoy breathtaking views, memorable adventures and
+                        seamless booking.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= FEATURED TREKS ================= -->
+
+<section class="featured-section py-5 bg-light">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="text-primary fw-bold">
+                POPULAR DESTINATIONS
+            </span>
+
+            <h2 class="display-5 fw-bold mt-2">
+
+                Featured Treks
+
+            </h2>
+
+        </div>
+
+        <div class="row g-4">
+
+            <!-- Trek 1 -->
+
+            <div class="col-lg-4">
+
+                <div class="card trek-card border-0">
+
+                    <img
+                    src="{{ url_for('static', filename='images/kedarnath.jpg') }}"
+                    class="card-img-top">
+
+                    <div class="card-body">
+
+                        <span class="badge bg-primary mb-2">
+                            Moderate
+                        </span>
+
+                        <h4>
+                            Kedarnath Trek
+                        </h4>
+
+                        <p>
+                            A spiritual Himalayan trek surrounded by snow
+                            covered mountains.
+                        </p>
+
+                        <a href="/login"
+                           class="btn btn-primary">
+                            View Details
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Trek 2 -->
+
+            <div class="col-lg-4">
+
+                <div class="card trek-card border-0">
+
+                    <img
+                    src="{{ url_for('static', filename='images/valley.jpg') }}"
+                    class="card-img-top">
+
+                    <div class="card-body">
+
+                        <span class="badge bg-success mb-2">
+                            Easy
+                        </span>
+
+                        <h4>
+                            Valley of Flowers
+                        </h4>
+
+                        <p>
+                            Explore colourful alpine flowers with beautiful
+                            mountain landscapes.
+                        </p>
+
+                        <a href="/login"
+                           class="btn btn-primary">
+                            View Details
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Trek 3 -->
+
+            <div class="col-lg-4">
+
+                <div class="card trek-card border-0">
+
+                    <img
+                    src="{{ url_for('static', filename='images/everest.jpg') }}"
+                    class="card-img-top">
+
+                    <div class="card-body">
+
+                        <span class="badge bg-danger mb-2">
+                            Difficult
+                        </span>
+
+                        <h4>
+                            Everest Base Camp
+                        </h4>
+
+                        <p>
+                            One of the world's most iconic trekking adventures.
+                        </p>
+
+                        <a href="/login"
+                           class="btn btn-primary">
+                            View Details
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= ACTIVITIES ================= -->
+
+<section class="activities-section py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="text-primary fw-bold">
+                ADVENTURE
+            </span>
+
+            <h2 class="display-5 fw-bold">
+
+                Activities We Offer
+
+            </h2>
+
+        </div>
+
+        <div class="row text-center g-4">
+
+            <div class="col-md-3">
+
+                <div class="activity-card">
+
+                    <div class="activity-icon">🥾</div>
+
+                    <h5>Trekking</h5>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="activity-card">
+
+                    <div class="activity-icon">🏕️</div>
+
+                    <h5>Camping</h5>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="activity-card">
+
+                    <div class="activity-icon">📸</div>
+
+                    <h5>Photography</h5>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="activity-card">
+
+                    <div class="activity-icon">🌄</div>
+
+                    <h5>Sightseeing</h5>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= STATS ================= -->
+
+<section class="stats-section py-5">
+
+    <div class="container">
+
+        <div class="row text-center">
+
+            <div class="col-md-3">
+
+                <h2>500+</h2>
+
+                <p>Happy Trekkers</p>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <h2>50+</h2>
+
+                <p>Treks Organized</p>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <h2>20+</h2>
+
+                <p>Expert Guides</p>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <h2>10+</h2>
+
+                <p>Mountain Regions</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+
+<section class="testimonial-section py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="text-primary fw-bold">
+                TESTIMONIALS
+            </span>
+
+            <h2 class="display-5 fw-bold">
+
+                What Our Trekkers Say
+
+            </h2>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-lg-4">
+
+                <div class="card p-4 h-100">
+
+                    <p>
+
+                        "Everything was perfectly organised.
+                        Booking was easy and the staff was
+                        extremely supportive."
+
+                    </p>
+
+                    <hr>
+
+                    <strong>
+                        Rahul Kumar
+                    </strong>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="card p-4 h-100">
+
+                    <p>
+
+                        "One of the best trekking experiences
+                        I've ever had. Highly recommended."
+
+                    </p>
+
+                    <hr>
+
+                    <strong>
+
+                        Priya Singh
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="card p-4 h-100">
+
+                    <p>
+
+                        "Amazing destinations and excellent
+                        trek management."
+
+                    </p>
+
+                    <hr>
+
+                    <strong>
+
+                        Aman Verma
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= CTA ================= -->
+
+<section class="cta-section">
+
+    <div class="container text-center">
+
+        <h2 class="display-5 fw-bold">
+
+            Ready For Your Next Adventure?
+
+        </h2>
+
+        <p class="lead">
+
+            Join thousands of trekkers exploring India's
+            most beautiful mountain trails.
+
+        </p>
+
+        {% if current_user.is_authenticated %}
+
+            {% if current_user.role == 'admin' %}
+
+                <a href="/admin-dashboard"
+                   class="btn btn-light btn-lg mt-3">
+
+                    Admin Dashboard
+
+                </a>
+
+            {% elif current_user.role == 'staff' %}
+
+                <a href="/staff-dashboard"
+                   class="btn btn-light btn-lg mt-3">
+
+                    Staff Dashboard
+
+                </a>
+
+            {% elif current_user.role == 'user' %}
+
+                <a href="/user-dashboard"
+                   class="btn btn-light btn-lg mt-3">
+
+                    Explore Treks
+
+                </a>
+
+            {% endif %}
+
+        {% else %}
+
+            <a href="/register-user"
+               class="btn btn-light btn-lg mt-3">
+
+                Start Your Journey
+
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

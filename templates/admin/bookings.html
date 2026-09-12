@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}
+Bookings Management
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+
+<div class="mb-4">
+
+    <h2 class="fw-bold">
+        Booking Management
+    </h2>
+
+    <p class="text-muted">
+        View all trek bookings.
+    </p>
+
+</div>
+
+<div class="card shadow">
+
+    <div class="card-body">
+
+        {% if bookings %}
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Trek</th>
+                        <th>Status</th>
+                        <th>Booking Date</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for booking in bookings %}
+
+                    <tr>
+
+                        <td>
+                            {{ booking.id }}
+                        </td>
+
+                        <td class="fw-bold">
+                            {{ booking.user.name }}
+                        </td>
+
+                        <td>
+                            {{ booking.trek.trek_name }}
+                        </td>
+
+                        <td>
+
+                            <span class="badge bg-success">
+                                {{ booking.status }}
+                            </span>
+
+                        </td>
+
+                        <td>
+                            {{ booking.booking_date.strftime('%d-%m-%Y') }}
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+            <div class="alert alert-info">
+
+                No bookings found.
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</div>
+
+{% endblock %}

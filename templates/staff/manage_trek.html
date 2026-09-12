@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block title %}
+Manage Trek
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+
+<div class="mb-4">
+
+    <h2 class="fw-bold">
+        Manage Trek
+    </h2>
+
+    <p class="text-muted">
+        Update trek details and status.
+    </p>
+
+</div>
+
+<div class="card shadow">
+
+    <div class="card-header bg-dark text-white">
+
+        <h4 class="mb-0">
+            {{ trek.trek_name }}
+        </h4>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row mb-4">
+
+            <div class="col-md-6">
+
+                <p>
+                    <strong>Location:</strong>
+                    {{ trek.location }}
+                </p>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <p>
+                    <strong>Difficulty:</strong>
+
+                    {% if trek.difficulty == 'Easy' %}
+                        <span class="badge bg-success">Easy</span>
+
+                    {% elif trek.difficulty == 'Moderate' %}
+                        <span class="badge bg-warning text-dark">Moderate</span>
+
+                    {% elif trek.difficulty == 'Hard' %}
+                        <span class="badge bg-danger">Hard</span>
+
+                    {% endif %}
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <form method="POST">
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Available Slots
+                </label>
+
+                <input type="number"
+                       class="form-control"
+                       name="available_slots"
+                       value="{{ trek.available_slots }}"
+                       required>
+
+            </div>
+
+            <div class="mb-4">
+
+                <label class="form-label">
+                    Trek Status
+                </label>
+
+                <select class="form-select"
+                        name="status">
+
+                    <option value="open"
+                        {% if trek.status == 'open' %}selected{% endif %}>
+                        Open
+                    </option>
+
+                    <option value="closed"
+                        {% if trek.status == 'closed' %}selected{% endif %}>
+                        Closed
+                    </option>
+
+                    <option value="started"
+                        {% if trek.status == 'started' %}selected{% endif %}>
+                        Started
+                    </option>
+
+                    <option value="completed"
+                        {% if trek.status == 'completed' %}selected{% endif %}>
+                        Completed
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="d-flex gap-2">
+
+                <button type="submit"
+                        class="btn btn-primary">
+
+                    Update Trek
+
+                </button>
+
+                <a href="/staff-dashboard"
+                   class="btn btn-secondary">
+
+                    Back
+
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</div>
+
+{% endblock %}

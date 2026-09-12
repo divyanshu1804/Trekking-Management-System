@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block title %}
+User Management
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+
+<div class="mb-4">
+
+    <h2 class="fw-bold">
+        User & Staff Management
+    </h2>
+
+    <p class="text-muted">
+        Manage user and staff accounts.
+    </p>
+
+</div>
+
+<div class="card shadow">
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for user in users %}
+
+                    <tr>
+
+                        <td>
+                            {{ user.id }}
+                        </td>
+
+                        <td>
+                            <strong>
+                                {{ user.name }}
+                            </strong>
+                        </td>
+
+                        <td>
+
+                            {% if user.role == 'staff' %}
+
+                                <span class="badge bg-primary">
+                                    Staff
+                                </span>
+
+                            {% elif user.role == 'user' %}
+
+                                <span class="badge bg-secondary">
+                                    User
+                                </span>
+
+                            {% else %}
+
+                                {{ user.role }}
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            {% if user.status == 'approved' %}
+
+                                <span class="badge bg-success">
+                                    Approved
+                                </span>
+
+                            {% elif user.status == 'pending' %}
+
+                                <span class="badge bg-warning text-dark">
+                                    Pending
+                                </span>
+
+                            {% elif user.status == 'blacklisted' %}
+
+                                <span class="badge bg-danger">
+                                    Blacklisted
+                                </span>
+
+                            {% else %}
+
+                                {{ user.status }}
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            {% if user.status != 'blacklisted' %}
+
+                                <a href="/blacklist-user/{{ user.id }}"
+                                   class="btn btn-danger btn-sm"
+                                   onclick="return confirm('Blacklist this account?')">
+
+                                    Blacklist
+
+                                </a>
+
+                            {% else %}
+
+                                <a href="/unblacklist-user/{{ user.id }}"
+                                   class="btn btn-success btn-sm"
+                                   onclick="return confirm('Unblock this account?')">
+
+                                    Unblock
+
+                                </a>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+{% endblock %}

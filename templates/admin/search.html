@@ -1,0 +1,260 @@
+{% extends "base.html" %}
+
+{% block title %}
+Search
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+
+<div class="mb-4">
+
+    <h2 class="fw-bold">
+        Search Users, Staff & Treks
+    </h2>
+
+    <p class="text-muted">
+        Search by Name or ID.
+    </p>
+
+</div>
+
+<div class="card shadow mb-4">
+
+    <div class="card-body">
+
+        <form method="POST">
+
+            <div class="row">
+
+                <div class="col-md-10">
+
+                    <input type="text"
+                           name="keyword"
+                           class="form-control"
+                           placeholder="Enter Name or ID"
+                           required>
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <button type="submit"
+                            class="btn btn-primary w-100">
+                        Search
+                    </button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- USERS RESULT -->
+
+<div class="card shadow mb-4">
+
+    <div class="card-body">
+
+        <h4 class="mb-3">
+            Users / Staff
+        </h4>
+
+        {% if users %}
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for user in users %}
+
+                    <tr>
+
+                        <td>{{ user.id }}</td>
+
+                        <td class="fw-bold">
+                            {{ user.name }}
+                        </td>
+
+                        <td>
+
+                            {% if user.role == 'staff' %}
+
+                                <span class="badge bg-primary">
+                                    Staff
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge bg-secondary">
+                                    User
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            {% if user.status == 'approved' %}
+
+                                <span class="badge bg-success">
+                                    Approved
+                                </span>
+
+                            {% elif user.status == 'pending' %}
+
+                                <span class="badge bg-warning text-dark">
+                                    Pending
+                                </span>
+
+                            {% elif user.status == 'blacklisted' %}
+
+                                <span class="badge bg-danger">
+                                    Blacklisted
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+            <div class="alert alert-info">
+                No matching users found.
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+<!-- TREKS RESULT -->
+
+<div class="card shadow">
+
+    <div class="card-body">
+
+        <h4 class="mb-3">
+            Treks
+        </h4>
+
+        {% if treks %}
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Trek Name</th>
+                        <th>Location</th>
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for trek in treks %}
+
+                    <tr>
+
+                        <td>{{ trek.id }}</td>
+
+                        <td class="fw-bold">
+                            {{ trek.trek_name }}
+                        </td>
+
+                        <td>{{ trek.location }}</td>
+
+                        <td>
+
+                            {% if trek.status == 'open' %}
+
+                                <span class="badge bg-success">
+                                    Open
+                                </span>
+
+                            {% elif trek.status == 'closed' %}
+
+                                <span class="badge bg-secondary">
+                                    Closed
+                                </span>
+
+                            {% elif trek.status == 'started' %}
+
+                                <span class="badge bg-primary">
+                                    Started
+                                </span>
+
+                            {% elif trek.status == 'completed' %}
+
+                                <span class="badge bg-dark">
+                                    Completed
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+            <div class="alert alert-info">
+                No matching treks found.
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</div>
+
+{% endblock %}

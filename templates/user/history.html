@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}
+Trekking History
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+
+<div class="mb-4">
+
+    <h2 class="fw-bold">
+        Trekking History
+    </h2>
+
+    <p class="text-muted">
+        View your completed trekking adventures.
+    </p>
+
+</div>
+
+{% if history %}
+
+<div class="card shadow">
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>Booking ID</th>
+                        <th>Trek Name</th>
+                        <th>Location</th>
+                        <th>Difficulty</th>
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for booking in history %}
+
+                    <tr>
+
+                        <td>
+                            {{ booking.id }}
+                        </td>
+
+                        <td class="fw-bold">
+                            {{ booking.trek.trek_name }}
+                        </td>
+
+                        <td>
+                            {{ booking.trek.location }}
+                        </td>
+
+                        <td>
+
+                            {% if booking.trek.difficulty == 'Easy' %}
+
+                                <span class="badge bg-success">
+                                    Easy
+                                </span>
+
+                            {% elif booking.trek.difficulty == 'Moderate' %}
+
+                                <span class="badge bg-warning text-dark">
+                                    Moderate
+                                </span>
+
+                            {% elif booking.trek.difficulty == 'Hard' %}
+
+                                <span class="badge bg-danger">
+                                    Hard
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            <span class="badge bg-primary">
+                                Completed
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% else %}
+
+<div class="alert alert-info">
+
+    No completed treks yet.
+
+</div>
+
+{% endif %}
+
+</div>
+
+{% endblock %}

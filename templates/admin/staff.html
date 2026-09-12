@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}
+Staff Management
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+
+<div class="mb-4">
+
+    <h2 class="fw-bold">
+        Staff Management
+    </h2>
+
+    <p class="text-muted">
+        Review and approve staff registrations.
+    </p>
+
+</div>
+
+<div class="card shadow">
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for staff in staff_members %}
+
+                    <tr>
+
+                        <td>{{ staff.id }}</td>
+
+                        <td>
+                            <strong>
+                                {{ staff.name }}
+                            </strong>
+                        </td>
+
+                        <td>{{ staff.email }}</td>
+
+                        <td>
+
+                            {% if staff.status == 'approved' %}
+
+                                <span class="badge bg-success">
+                                    Approved
+                                </span>
+
+                            {% elif staff.status == 'pending' %}
+
+                                <span class="badge bg-warning text-dark">
+                                    Pending
+                                </span>
+
+                            {% elif staff.status == 'blacklisted' %}
+
+                                <span class="badge bg-danger">
+                                    Blacklisted
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            {% if staff.status == 'pending' %}
+
+                                <a href="/approve-staff/{{ staff.id }}"
+                                   class="btn btn-success btn-sm">
+
+                                    Approve
+
+                                </a>
+
+                            {% else %}
+
+                                <span class="text-muted">
+                                    No Action
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+{% endblock %}

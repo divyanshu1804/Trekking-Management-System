@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+
+{% block title %}
+User Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+
+<div class="mb-4">
+
+    <h2 class="fw-bold">
+        Available Treks
+    </h2>
+
+    <p class="text-muted">
+        Discover and book your next adventure.
+    </p>
+
+</div>
+
+<!-- SEARCH FILTER -->
+
+<div class="card shadow mb-4">
+
+    <div class="card-body">
+
+        <form method="GET">
+
+            <div class="row g-3">
+
+                <div class="col-md-4">
+
+                    <select name="difficulty"
+                            class="form-select">
+
+                        <option value="">
+                            All Difficulties
+                        </option>
+
+                        <option value="Easy">
+                            Easy
+                        </option>
+
+                        <option value="Moderate">
+                            Moderate
+                        </option>
+
+                        <option value="Hard">
+                            Hard
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <input type="text"
+                           name="location"
+                           class="form-control"
+                           placeholder="Enter Location">
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <button type="submit"
+                            class="btn btn-primary w-100">
+
+                        Search
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% if treks %}
+
+<div class="row">
+
+    {% for trek in treks %}
+
+    <div class="col-lg-4 col-md-6 mb-4">
+
+        <div class="card shadow h-100">
+
+            <!-- TREK IMAGE -->
+
+            {% if trek.image %}
+
+                <img src="{{ url_for(
+                    'static',
+                    filename='uploads/' + trek.image
+                ) }}"
+                class="card-img-top"
+                alt="{{ trek.trek_name }}">
+
+            {% else %}
+
+                <img src="{{ url_for(
+                    'static',
+                    filename='images/kedarnath.jpg'
+                ) }}"
+                class="card-img-top"
+                alt="Default Trek Image">
+
+            {% endif %}
+
+            <div class="card-body">
+
+                <h5 class="card-title fw-bold">
+                    {{ trek.trek_name }}
+                </h5>
+
+                <p class="mb-1">
+
+                    <strong>Location:</strong>
+
+                    {{ trek.location }}
+
+                </p>
+
+                <p class="mb-1">
+
+                    <strong>Difficulty:</strong>
+
+                    {% if trek.difficulty == 'Easy' %}
+
+                        <span class="badge bg-success">
+                            Easy
+                        </span>
+
+                    {% elif trek.difficulty == 'Moderate' %}
+
+                        <span class="badge bg-warning text-dark">
+                            Moderate
+                        </span>
+
+                    {% elif trek.difficulty == 'Hard' %}
+
+                        <span class="badge bg-danger">
+                            Hard
+                        </span>
+
+                    {% endif %}
+
+                </p>
+
+                <p class="mb-1">
+
+                    <strong>Slots:</strong>
+
+                    <span class="badge bg-info text-dark">
+                        {{ trek.available_slots }}
+                    </span>
+
+                </p>
+
+                <p class="mb-1">
+
+                    <strong>Start Date:</strong>
+
+                    {{ trek.start_date.strftime('%d-%m-%Y') }}
+
+                </p>
+
+                <p class="mb-1">
+
+                    <strong>End Date:</strong>
+
+                    {{ trek.end_date.strftime('%d-%m-%Y') }}
+
+                </p>
+
+                <p class="mb-1">
+
+                    <strong>Duration:</strong>
+
+                    {{ trek.duration }} Days
+
+                </p>
+
+                <p class="mb-1">
+
+                    <strong>Status:</strong>
+
+                    <span class="badge bg-success">
+                        {{ trek.status }}
+                    </span>
+
+                </p>
+
+            </div>
+
+            <div class="card-footer bg-white border-0">
+
+                <a href="/book-trek/{{ trek.id }}"
+                   class="btn btn-success w-100">
+
+                    Book Trek
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% else %}
+
+<div class="alert alert-info">
+
+    No open treks available.
+
+</div>
+
+{% endif %}
+
+</div>
+
+{% endblock %}

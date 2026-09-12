@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}
+Participants
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+
+<div class="mb-4">
+
+    <h2 class="fw-bold">
+        Participants
+    </h2>
+
+    <p class="text-muted">
+        Trek: {{ trek.trek_name }}
+    </p>
+
+</div>
+
+{% if bookings %}
+
+<div class="card shadow">
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>Booking ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for booking in bookings %}
+
+                    <tr>
+
+                        <td>
+                            {{ booking.id }}
+                        </td>
+
+                        <td class="fw-bold">
+                            {{ booking.user.name }}
+                        </td>
+
+                        <td>
+                            {{ booking.user.email }}
+                        </td>
+
+                        <td>
+
+                            {% if booking.status == 'booked' %}
+
+                                <span class="badge bg-success">
+                                    Booked
+                                </span>
+
+                            {% elif booking.status == 'cancelled' %}
+
+                                <span class="badge bg-danger">
+                                    Cancelled
+                                </span>
+
+                            {% elif booking.status == 'completed' %}
+
+                                <span class="badge bg-primary">
+                                    Completed
+                                </span>
+
+                            {% else %}
+
+                                {{ booking.status }}
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% else %}
+
+<div class="alert alert-info">
+
+    No participants yet.
+
+</div>
+
+{% endif %}
+
+<div class="mt-4">
+
+    <a href="/staff-dashboard"
+       class="btn btn-secondary">
+
+        Back to Dashboard
+
+    </a>
+
+</div>
+
+</div>
+
+{% endblock %}
